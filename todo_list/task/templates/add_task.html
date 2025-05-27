@@ -1,0 +1,59 @@
+
+{% extends 'base.html'%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/task.css' %}">
+
+{% block content %}
+<section>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+             <label for="{{ form.done.id_for_label }}">
+            {{ form.done.label }}
+            {% if form.fields.done.required %}
+            <span style="color: red;">*</span>
+            {% endif %}
+        </label>
+            {{form.done}}
+
+        </div>
+        <div>
+            <label for="{{ form.done.id_for_label }}">
+            {{ form.date.label }}
+            {% if form.fields.date.required %}
+            <span style="color: red;">*</span>
+            {% endif %}
+            </label>
+            {{form.date}}
+
+        </div>
+        <div>
+             <label for="{{ form.description.id_for_label }}">
+            {{ form.description.label }}
+            {% if form.fields.description.required %}
+            <span style="color: red;">*</span>
+            {% endif %}
+            </label>
+            {{form.description}}
+
+        </div>
+        <div>
+            {{form.image.label_tag}}
+            {{form.image}}
+
+
+        </div>
+       
+        <div class="pos">
+            <label >
+                <span>{{ form.status.label}}</span> <span>{{form.status}}</span>
+
+            </label>
+        </div>
+        <div>
+            <button type="reset">Reset</button>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</section>
+{% endblock content%}

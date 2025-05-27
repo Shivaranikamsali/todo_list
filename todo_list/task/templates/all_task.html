@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+ {% block content %}
+<main>
+    <section class="list">
+        <h1>Completed Tasks</h1>
+        {% if true_list %}
+            {% for task in true_list %}
+                <div class="item task-item completed">
+                    <h3>Completed</h3>
+                    <p>{{ task.date }}</p>
+                    <p>{{ task.description }}</p>
+                    {% if task.image %}
+                        <img src="{{ task.image.url }}" alt="Not available" style="height:100px; width:100px;">
+                    {% endif %}
+                    <div class="action">
+                        <a href="{% url 'update' task.id %}">Update</a>
+                        <a href="{% url 'delete' task.id %}">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No completed tasks</p>
+        {% endif %}
+    </section>
+
+    <br>
+
+    <section>
+        <h1>Not Completed Tasks</h1>
+        {% if false_list %}
+            {% for task in false_list %}
+                <div class="notitem task-item pending">
+                    <h3>Not Completed</h3>
+                    <p>{{ task.date }}</p>
+                    <p>{{ task.description }}</p>
+                    {% if task.image %}
+                        <img src="{{ task.image.url }}" alt="Not available" style="height:100px; width:100px;">
+                    {% endif %}
+                    <div class="action">
+                        <a href="{% url 'update' task.id %}">Update</a>
+                        <a href="{% url 'delete' task.id %}">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No tasks found</p>
+        {% endif %}
+    </section>
+</main>
+ {% endblock content %}

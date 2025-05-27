@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}  
+    <h1 >Edit Task</h1>
+    <div class="formm">
+        <div class="form">
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+  <div>
+    {{ form.done.label_tag }}<br>
+    {{ form.done }}
+  </div>
+
+  <div>
+    {{ form.date.label_tag }}<br>
+    {{ form.date }}
+  </div>
+
+  <div>
+    {{ form.description.label_tag }}<br>
+    {{ form.description }}
+  </div>
+  
+  <div>
+    {{ form.image.label_tag }}
+    {{ form.image }}
+  </div>
+        <button type="submit" id="save">Save</button>
+        
+    <div class="back">
+    <p id="back"><a href="{% url 'home' %}">Back</a></p>
+    </div>
+    </div>
+ {% endblock content %}
